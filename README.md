@@ -27,6 +27,22 @@ TODO:
 -   `git clone https://github.com/waycrate/waysip && cd waysip`
 -   `cargo build --release`
 -   `sudo mv ./target/release/waysip /usr/local/bin`
+## Using Nix flakes (nixOS / Nix)
+
+This repository provides a Nix flake for building and running waysip.
+
+### Build
+
+```bash
+nix build github:waycrate/waysip
+```
+
+### Run
+
+```bash
+nix run github:waycrate/waysip
+```
+
 
 # Support:
 
