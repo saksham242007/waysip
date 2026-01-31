@@ -5,7 +5,8 @@ use wayland_client::{DispatchError, globals::BindError};
 /// 1. failed when init
 /// 2. failed in queue
 /// 3. failed when protocol not supported
-/// 4. when not get the cursor
+/// 4. Error returned when the cursor cannot be obtained from the compositor
+
 #[derive(Error, Debug)]
 pub enum WaySipError {
     #[error("Failed to initialize app state")]
