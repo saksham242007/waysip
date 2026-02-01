@@ -170,6 +170,7 @@ impl ScreenInfo {
 pub struct WaysipState {
     pub wloutput_infos: Vec<WlOutputInfo>,
     pub running: bool,
+    pub selection_finalized: bool,
     pub selection_type: SelectionType,
     pub wl_surfaces: Vec<LayerSurfaceInfo>,
     pub current_pos: Position<f64>,
@@ -193,6 +194,7 @@ impl WaysipState {
         WaysipState {
             wloutput_infos: Vec::new(),
             running: true,
+            selection_finalized: false,
             selection_type,
             wl_surfaces: Vec::new(),
             current_pos: Position { x: 0., y: 0. },
