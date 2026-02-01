@@ -234,6 +234,7 @@ impl Dispatch<wl_pointer::WlPointer, ()> for state::WaysipState {
                         {
                             dispatch_state.end_pos = Some(dispatch_state.current_pos);
                             dispatch_state.running = false;
+                            dispatch_state.selection_finalized = false;
                         }
                     }
                     WEnum::Value(wl_pointer::ButtonState::Released) => {
@@ -257,10 +258,11 @@ impl Dispatch<wl_pointer::WlPointer, ()> for state::WaysipState {
                                     true // Default to single click if we somehow don't have press time
                                 };
 
-                            if is_single_click {
-                                // Behave like output selection (-o)
-                                dispatch_state.effective_selection_type =
-                                    Some(crate::state::SelectionType::Screen);
+                            if is_single_click && !dispatch_state.selection_finalized {
+                               dispatch_state.effective_selection_type =
+                                  Some(crate::state::SelectionType::Output);
+                                 }
+
                                 // For screen selection, we need to set positions to cover the whole screen
                                 let screen_info = dispatch_state.wloutput_infos
                                     [dispatch_state.current_screen]
